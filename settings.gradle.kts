@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "CurrencyRateViewer"
 include(":app")
 include(":common")
+include(":app:data")
