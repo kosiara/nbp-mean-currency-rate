@@ -2,7 +2,10 @@ package com.bk.currency.welcome.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bk.currency.data.common.DataState
+import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
+import com.piashcse.hilt_mvvm_compose_movie.data.repository.remote.movie.TableRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -21,7 +24,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val movieRepo: MovieRepository,
+    private val currencyRepo: TableRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MainUiState())
@@ -29,37 +32,36 @@ class MainViewModel @Inject constructor(
 
     fun loadGenres() {
         viewModelScope.launch {
-//            movieRepo.genreList()
-//                .onStart {
-//                    _uiState.value = _uiState.value.copy(isLoading = true, error = null)
-//                }
-//                .catch { exception ->
-//                    _uiState.value = _uiState.value.copy(isLoading = false, error = exception)
-//                }
-//                .collect { result ->
-//                    when (result) {
-//                        is DataState.Success -> {
-//                            _uiState.value = _uiState.value.copy(
-//                                genres = result.data, // Extracting Genres object
-//                                isLoading = false
-//                            )
-//                        }
-//                        is DataState.Error -> {
-//                            _uiState.value = _uiState.value.copy(
-//                                isLoading = false,
-//                                error = result.exception
-//                            )
-//                        }
-//                        is DataState.Loading -> {
-//                            _uiState.value = _uiState.value.copy(isLoading = true)
-//                        }
-//                    }
-//                }
+            currencyRepo.currencyRates(NbpTableName.A)
+                .onStart {
+                    _uiState.value = _uiState.value.copy(isLoading = true, error = null)
+                }
+                .catch { exception ->
+                    _uiState.value = _uiState.value.copy(isLoading = false, error = exception)
+                }
+                .collect { result ->
+                    when (result) {
+                        is DataState.Success -> {
+                            _uiState.value = _uiState.value.copy(
+                                currencyTable = result.data,
+                                isLoading = false
+                            )
+                        }
+                        is DataState.Error -> {
+                            _uiState.value = _uiState.value.copy(
+                                isLoading = false,
+                                error = result.exception
+                            )
+                        }
+                        is DataState.Loading -> {
+                            _uiState.value = _uiState.value.copy(isLoading = true)
+                        }
+                    }
+                }
         }
     }
-
-
 }
+
 data class MainUiState(
     val currencyTable: CurrencyTable? = null,
     val isLoading: Boolean = false,

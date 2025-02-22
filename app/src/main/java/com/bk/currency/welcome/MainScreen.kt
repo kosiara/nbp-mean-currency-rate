@@ -1,8 +1,9 @@
 package com.bk.currency.welcome
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -27,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.foundation.lazy.items
 import com.bk.currency.R
 import com.bk.currency.data.model.CurrencyItem
+import com.bk.currency.ui.component.CurrencyItemRow
 import com.bk.currency.welcome.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,7 +58,7 @@ fun MainScreen() {
                 titleContentColor = MaterialTheme.colorScheme.primary,
             ), title = {
                 Text(
-                    text = stringResource(id = R.string.main_screen), /* navigationTitle(navController) */,
+                    text = stringResource(id = R.string.main_screen), /* navigationTitle(navController), */
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     color = Color.White
@@ -168,7 +171,7 @@ fun MainView(
     rates: List<CurrencyItem>?,
     isFavorite: Boolean,
 ) {
-    Column {
+//    Column {
 //        if (currentRoute(navController) !in listOf(
 //                Screen.MovieDetail.route,
 //                Screen.TvSeriesDetail.route,
@@ -186,5 +189,16 @@ fun MainView(
 //        ) {
 //            Navigation(navController, genres)
 //        }
+//    }
+    LazyColumn(
+        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
+    ) {
+        items(rates ?: emptyList()) { item ->
+            CurrencyItemRow(
+                    selected = false,
+                currencyItem = item,
+                onclick = {}
+            )
+        }
     }
 }
