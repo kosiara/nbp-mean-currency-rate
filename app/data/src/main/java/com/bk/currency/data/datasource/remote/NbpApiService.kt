@@ -8,7 +8,7 @@ import retrofit2.http.Query
 //// https://api.nbp.pl/api/exchangerates/tables/A?format=json
 
 interface NbpApiService {
-    @GET("exchangerates/tables/{tableName}?format=json")
+    @GET("exchangerates/tables/{tableName}")
     suspend fun getCurrencies(
         @Path("tableName") tableName: String,
     ): List<CurrencyTable>
