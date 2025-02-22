@@ -31,6 +31,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.foundation.lazy.items
 import com.bk.currency.R
 import com.bk.currency.data.model.CurrencyItem
+import com.bk.currency.data.model.CurrencyTable
+import com.bk.currency.navigation.Navigation
+import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.ui.component.CurrencyItemRow
 import com.bk.currency.welcome.viewmodel.MainViewModel
 
@@ -58,7 +61,7 @@ fun MainScreen() {
                 titleContentColor = MaterialTheme.colorScheme.primary,
             ), title = {
                 Text(
-                    text = stringResource(id = R.string.main_screen), /* navigationTitle(navController), */
+                    text = navigationTitle(navController),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     color = Color.White
@@ -140,7 +143,7 @@ fun MainScreen() {
             MainView(
                 navController = navController,
                 pagerState = pagerState,
-                rates = uiState.currencyTable?.rates,
+                currencyTable = uiState.currencyTable,
                 isFavorite = isFavoriteActive.value
             )
 
@@ -168,7 +171,7 @@ fun MainScreen() {
 fun MainView(
     navController: NavHostController,
     pagerState: PagerState,
-    rates: List<CurrencyItem>?,
+    currencyTable: CurrencyTable?,
     isFavorite: Boolean,
 ) {
 //    Column {
@@ -190,6 +193,10 @@ fun MainView(
 //            Navigation(navController, genres)
 //        }
 //    }
+    val rates = currencyTable?.rates
+
+    Navigation(navController, currencyTable)
+
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
     ) {
