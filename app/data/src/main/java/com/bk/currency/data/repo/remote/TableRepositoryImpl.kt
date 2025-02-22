@@ -10,6 +10,7 @@ import com.bk.currency.data.model.CurrencyItem
 import com.bk.currency.data.model.CurrencyTable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 import javax.inject.Inject
 
 class TableRepositoryImpl @Inject constructor(
@@ -22,8 +23,13 @@ class TableRepositoryImpl @Inject constructor(
             emit(DataState.Loading)
             try {
                 val query = apiService.getCurrencies(tableName.name)
-                emit(DataState.Success(query))
+                if (query.isEmpty()) {
+                    throw Exception("Empty currency list received!")
+                }
+
+                emit(DataState.Success(query.first()))
             } catch (e: Exception) {
+                Timber.e(e, "Exception when downloading: api/exchangerates/tables")
                 emit(DataState.Error(e))
             }
         }

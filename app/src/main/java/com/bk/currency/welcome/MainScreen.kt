@@ -195,7 +195,7 @@ fun MainView(
     ) {
         items(rates ?: emptyList()) { item ->
             CurrencyItemRow(
-                    selected = false,
+                selected = false,
                 currencyItem = item,
                 onclick = {}
             )

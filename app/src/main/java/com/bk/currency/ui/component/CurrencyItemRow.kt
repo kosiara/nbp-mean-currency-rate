@@ -48,7 +48,7 @@ fun CurrencyItemRow(
             fontSize = 14.sp,
             fontWeight = FontWeight.Light,
             textAlign = TextAlign.Center,
-            color = Color.White.copy(alpha = 0.80F),
+            color = Color.Black,
             modifier = Modifier.align(Alignment.Center)
         )
     }
