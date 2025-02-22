@@ -126,7 +126,7 @@ fun MainScreen() {
 //            }
         },
         snackbarHost = {
-//            if (!isConnected) {
+            if (uiState.error != null) {
                 Snackbar(
                     action = {}, modifier = Modifier.padding(8.dp)
                 )
@@ -134,7 +134,7 @@ fun MainScreen() {
                     Text(text = stringResource(R.string.no_internet))
                 }
             }
-//        }
+        }
     ) { padding ->
         Box(Modifier.padding(padding)) {
             MainView(
