@@ -1,5 +1,6 @@
 package com.bk.currency.data.datasource.remote
 
+import com.bk.currency.data.model.CurrencyTable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -9,8 +10,6 @@ import retrofit2.http.Query
 interface NbpApiService {
     @GET("exchangerates/tables/{tableName}")
     suspend fun getCurrencies(
-        @Path("tableName") page: String,
-    ): BaseModelMovie
-
-
+        @Path("tableName") tableName: String,
+    ): CurrencyTable
 }

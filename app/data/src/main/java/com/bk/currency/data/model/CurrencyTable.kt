@@ -10,5 +10,5 @@ data class CurrencyTable(
     @SerializedName("effectiveDate")
     val effectiveDate: String,
     @SerializedName("rates")
-    val mid: List<CurrencyItem>
+    val rates: List<CurrencyItem>
 )

@@ -21,6 +21,11 @@ logging-interceptor = "4.12.0"
 timber = "5.0.1"
 appcompat = "1.6.1"
 material = "1.12.0"
+# navigation
+navigation-runtime-ktx = "2.8.7"
+navigation-compose = "2.8.7"
+# other
+paging-compose = "3.3.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +52,9 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigation-runtime-ktx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose" }
 
 
 [plugins]

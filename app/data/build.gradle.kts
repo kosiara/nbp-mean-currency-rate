@@ -42,6 +42,9 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.gson)
 
+    // Network paging
+    implementation(libs.androidx.paging.compose)
+
     // DI
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
