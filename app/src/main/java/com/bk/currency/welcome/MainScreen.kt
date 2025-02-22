@@ -1,6 +1,7 @@
 package com.bk.currency.welcome
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,6 +35,7 @@ import com.bk.currency.data.model.CurrencyItem
 import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.navigation.Navigation
 import com.bk.currency.navigation.navigationTitle
+import com.bk.currency.ui.component.CircularIndeterminateProgressBar
 import com.bk.currency.ui.component.CurrencyItemRow
 import com.bk.currency.welcome.viewmodel.MainViewModel
 
@@ -42,12 +44,6 @@ import com.bk.currency.welcome.viewmodel.MainViewModel
 fun MainScreen() {
     val mainViewModel = hiltViewModel<MainViewModel>()
     val navController = rememberNavController()
-    val isAppBarVisible = remember { mutableStateOf(true) }
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-    val isFavoriteActive = remember { mutableStateOf(false) }
-    val pagerState = rememberPagerState { 2 }
-
-    // Observe the UI state from the ViewModel
     val uiState by mainViewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -118,15 +114,7 @@ fun MainScreen() {
             )
         },
         bottomBar = {
-//            if (currentRoute(navController) in listOf(
-//                    Screen.NowPlaying.route, Screen.Popular.route,
-//                    Screen.TopRated.route, Screen.Upcoming.route,
-//                    Screen.AiringTodayTvSeries.route, Screen.OnTheAirTvSeriesNav.route,
-//                    Screen.PopularTvSeries.route, Screen.TopRatedTvSeries.route,
-//                )
-//            ) {
-                BottomNavigationUI(navController, pagerState)
-//            }
+            BottomNavigationUI(navController)
         },
         snackbarHost = {
             if (uiState.error != null) {
@@ -142,27 +130,9 @@ fun MainScreen() {
         Box(Modifier.padding(padding)) {
             MainView(
                 navController = navController,
-                pagerState = pagerState,
                 currencyTable = uiState.currencyTable,
-                isFavorite = isFavoriteActive.value
             )
-
-            //CircularIndeterminateProgressBar(isDisplayed = uiState.isLoading, 0.1f)
-
-//            if (!isAppBarVisible.value) {
-//                when (pagerState.currentPage) {
-//                    ACTIVE_MOVIE_TAB -> {
-//                        SearchUI(
-//                            navController, uiState.movieSearchResults, pagerState.currentPage
-//                        ) { isAppBarVisible.value = true }
-//                    }
-//                    ACTIVE_TV_SERIES_TAB -> {
-//                        SearchUI(
-//                            navController, uiState.tvSeriesSearchResults, pagerState.currentPage
-//                        ) { isAppBarVisible.value = true }
-//                    }
-//                }
-//            }
+            CircularIndeterminateProgressBar(isDisplayed = uiState.isLoading, 0.1f)
         }
     }
 }
@@ -170,42 +140,9 @@ fun MainScreen() {
 @Composable
 fun MainView(
     navController: NavHostController,
-    pagerState: PagerState,
     currencyTable: CurrencyTable?,
-    isFavorite: Boolean,
 ) {
-//    Column {
-//        if (currentRoute(navController) !in listOf(
-//                Screen.MovieDetail.route,
-//                Screen.TvSeriesDetail.route,
-//                Screen.ArtistDetail.route
-//            )
-//        ) {
-//            if (!isFavorite) {
-//                MovieTvSeriesTabView(navController, pagerState)
-//            } else {
-//                FavoriteTabView(navController)
-//            }
-//        }
-//        HorizontalPager(
-//            state = pagerState, modifier = Modifier.fillMaxSize(), userScrollEnabled = false
-//        ) {
-//            Navigation(navController, genres)
-//        }
-//    }
-    val rates = currencyTable?.rates
-
-    Navigation(navController, currencyTable)
-
-    LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
-    ) {
-        items(rates ?: emptyList()) { item ->
-            CurrencyItemRow(
-                selected = false,
-                currencyItem = item,
-                onclick = {}
-            )
-        }
+    Column {
+        Navigation(navController, currencyTable)
     }
 }

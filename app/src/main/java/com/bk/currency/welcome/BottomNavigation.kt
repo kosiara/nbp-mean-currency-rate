@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 //import com.piashcse.hilt_mvvm_compose_movie.utils.singleTopNavigator
 
 @Composable
-fun BottomNavigationUI(navController: NavController, pagerState: PagerState) {
+fun BottomNavigationUI(navController: NavController) {
     NavigationBar {
 //        val items = if (pagerState.currentPage == 0) {
 //            listOf(
