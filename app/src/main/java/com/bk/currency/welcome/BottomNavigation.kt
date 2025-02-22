@@ -1,50 +1,51 @@
 package com.bk.currency.welcome
 
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-//import com.piashcse.hilt_mvvm_compose_movie.navigation.Screen
-//import com.piashcse.hilt_mvvm_compose_movie.navigation.currentRoute
-//import com.piashcse.hilt_mvvm_compose_movie.utils.singleTopNavigator
+import com.bk.currency.navigation.Screen
 
 @Composable
 fun BottomNavigationUI(navController: NavController) {
     NavigationBar {
-//        val items = if (pagerState.currentPage == 0) {
-//            listOf(
-//                Screen.NowPlayingNav,
-//                Screen.PopularNav,
-//                Screen.TopRatedNav,
-//                Screen.UpcomingNav,
-//            )
-//        } else {
-//            listOf(
-//                Screen.AiringTodayTvSeriesNav,
-//                Screen.OnTheAirTvSeriesNav,
-//                Screen.PopularTvSeriesNav,
-//                Screen.TopRatedTvSeriesNav,
-//            )
-//        }
-//        items.forEachIndexed { index, item ->
-//            NavigationBarItem(icon = item.navIcon,
-//                label = { Text(text = stringResource(id = item.title)) },
-//                selected = currentRoute(navController) == item.route,
-//                onClick = {
-//                    navController.singleTopNavigator(item.route)
-//                })
-//        }
+        val items = listOf(
+            BottomTab.TableA,
+            BottomTab.TableB,
+        )
 
-        NavigationBarItem(icon = { Icons.Filled.Home },
-                label = { Text(text = "TABLE A") },
-                selected = false,
+        items.forEachIndexed { index, item ->
+            NavigationBarItem(icon = item.navIcon,
+                label = { Text(text = item.name) },
+                selected = false, //currentRoute(navController) == item.route,
                 onClick = {
                     //navController.singleTopNavigator(item.route)
                 })
+        }
     }
+}
+
+sealed class BottomTab(
+    val name: String,
+    val navigationPath: String,
+    val argumentTableName: String = "A",
+    val navIcon: (@Composable () -> Unit) = {
+        Icon(
+            Icons.Filled.Home, contentDescription = "home"
+        )
+    },
+) {
+    object TableA : BottomTab("Table A", Screen.CurrencyList.route, "A")
+    object TableB : BottomTab("Table B", Screen.CurrencyList.route, "B",
+        navIcon = {
+            Icon(
+                Icons.Filled.Star, contentDescription = "star"
+            )
+        }
+    )
 }
