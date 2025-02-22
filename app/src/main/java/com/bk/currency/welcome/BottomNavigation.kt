@@ -9,6 +9,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
+import com.bk.currency.common.singleTopNavigator
 import com.bk.currency.navigation.Screen
 
 @Composable
@@ -18,13 +19,12 @@ fun BottomNavigationUI(navController: NavController) {
             BottomTab.TableA,
             BottomTab.TableB,
         )
-
-        items.forEachIndexed { index, item ->
+        items.forEachIndexed { _, item ->
             NavigationBarItem(icon = item.navIcon,
                 label = { Text(text = item.name) },
                 selected = false, //currentRoute(navController) == item.route,
                 onClick = {
-                    //navController.singleTopNavigator(item.route)
+                    navController.singleTopNavigator(item.navigationPath.plus("/${item.argumentTableName}"))
                 })
         }
     }

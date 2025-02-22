@@ -2,11 +2,7 @@ package com.bk.currency.welcome
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -14,13 +10,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -29,14 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.foundation.lazy.items
 import com.bk.currency.R
-import com.bk.currency.data.model.CurrencyItem
-import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.navigation.Navigation
 import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.ui.component.CircularIndeterminateProgressBar
-import com.bk.currency.ui.component.CurrencyItemRow
 import com.bk.currency.welcome.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,10 +34,6 @@ fun MainScreen() {
     val mainViewModel = hiltViewModel<MainViewModel>()
     val navController = rememberNavController()
     val uiState by mainViewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        mainViewModel.loadGenres()
-    }
 
     Scaffold(
         topBar = {
@@ -130,7 +115,6 @@ fun MainScreen() {
         Box(Modifier.padding(padding)) {
             MainView(
                 navController = navController,
-                currencyTable = uiState.currencyTable,
             )
             CircularIndeterminateProgressBar(isDisplayed = uiState.isLoading, 0.1f)
         }
@@ -140,9 +124,8 @@ fun MainScreen() {
 @Composable
 fun MainView(
     navController: NavHostController,
-    currencyTable: CurrencyTable?,
 ) {
     Column {
-        Navigation(navController, currencyTable)
+        Navigation(navController)
     }
 }

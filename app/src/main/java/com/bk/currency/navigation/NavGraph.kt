@@ -12,18 +12,26 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.bk.currency.R
 import com.bk.currency.currency_list.CurrencyListScreen
-import com.bk.currency.data.model.CurrencyTable
 
 @Composable
 fun Navigation(
-    navController: NavHostController, currencyTable: CurrencyTable? = null,
+    navController: NavHostController,
 ) {
-    NavHost(navController, startDestination =  Screen.CurrencyList.route) {
-        composable(Screen.CurrencyList.route) {
-            CurrencyListScreen(
-                navController = navController,
-                currencyTable,
-            )
+    NavHost(navController, startDestination =  Screen.StartScreen.route) {
+        composable(
+            Screen.CurrencyList.route.plus(Screen.CurrencyList.objectPath),
+            arguments = listOf(navArgument(Screen.CurrencyList.objectName) {
+                type = NavType.StringType
+            })
+        ) {
+            label = stringResource(R.string.currency_list_screen)
+            val tableName = it.arguments?.getString(Screen.CurrencyList.objectName)
+            tableName?.let {
+                CurrencyListScreen(
+                    navController = navController,
+                    tableName = tableName,
+                )
+            }
         }
 
 //        composable(

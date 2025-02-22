@@ -18,7 +18,9 @@ sealed class Screen(
     val objectName: String = "",
     val objectPath: String = ""
 ) {
-    object CurrencyList : Screen("currency_list")
+    object StartScreen : Screen("currency_list/A")
+    object CurrencyList : Screen("currency_list",
+        objectName = "tableName", objectPath = "/{tableName}")
     object CurrencyDetail :
         Screen("currency_detail", objectName = "movieItem", objectPath = "/{movieItem}")
 }
