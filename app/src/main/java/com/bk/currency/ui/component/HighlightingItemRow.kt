@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bk.currency.data.mock.DataMock
 import com.bk.currency.data.model.CurrencyItem
 import java.util.Locale
 
@@ -62,7 +63,7 @@ fun HighlightingItemRow(
 @Composable
 fun PreviewHighlightingItemRow() {
     HighlightingItemRow(
-        CurrencyItem("Dolar amerykański", "USD", 4.12, effectiveDate = "2025-02-05", serialNumber = "023/A/NBP/2025"),
+        DataMock.singleCurrencyItems[0],
         isHighlighted = false,
         {},
     )
@@ -72,7 +73,7 @@ fun PreviewHighlightingItemRow() {
 @Composable
 fun PreviewHighlightingItemRow2() {
     HighlightingItemRow(
-        CurrencyItem("rand (Republika Południowej Afryki)", "USD", 4.12, effectiveDate = "2025-02-04", serialNumber = "023/A/NBP/2025"),
+        DataMock.singleCurrencyItems[1],
         isHighlighted = true,
         {},
     )
