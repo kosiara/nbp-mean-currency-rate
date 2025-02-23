@@ -12,4 +12,12 @@ interface NbpApiService {
     suspend fun getCurrencies(
         @Path("tableName") tableName: String,
     ): List<CurrencyTable>
+
+    //exchangerates/rates/A/USD/last/14?format=json
+    @GET("exchangerates/rates/{tableName}/{currencyCode}/last/{responseCount}")
+    suspend fun getCurrencyDetails(
+        @Path("tableName") tableName: String,
+        @Path("currencyCode") currencyCode: String,
+        @Path("responseCount") responseCount: Int,
+    ): CurrencyTable
 }

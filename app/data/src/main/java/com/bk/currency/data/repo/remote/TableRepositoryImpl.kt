@@ -34,16 +34,15 @@ class TableRepositoryImpl @Inject constructor(
             }
         }
 
-//    override suspend fun currencyDetail(movieId: Int): Flow<DataState<List<CurrencyDetails>>> = flow {
-//        emit(DataState.Loading)
-//        try {
-//            val searchResult = apiService.currencyDetail(movieId)
-//            emit(DataState.Success(searchResult))
-//
-//        } catch (e: Exception) {
-//            emit(DataState.Error(e))
-//        }
-//    }
+    override suspend fun currencyDetail(tableName: NbpTableName, currencyCode: String): Flow<DataState<CurrencyTable>> = flow {
+        emit(DataState.Loading)
+        try {
+            val query = apiService.getCurrencyDetails(tableName.name, currencyCode, 14)
+            emit(DataState.Success(query))
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
+    }
 
 
 

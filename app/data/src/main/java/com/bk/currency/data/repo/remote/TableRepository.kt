@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TableRepository {
     suspend fun currencyRates(tableName: NbpTableName): Flow<DataState<CurrencyTable>>
+    suspend fun currencyDetail(tableName: NbpTableName, currencyCode: String): Flow<DataState<CurrencyTable>>
 }

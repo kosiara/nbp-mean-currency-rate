@@ -61,7 +61,7 @@ fun CurrencyItemRow(
 fun PreviewCurrencyItemRow() {
     CurrencyItemRow(
         true,
-        CurrencyItem("Dolar amerykański", "USD", 4.12),
+        CurrencyItem("Dolar amerykański", "USD", 4.12, effectiveDate = "2025-02-04", serialNumber = "023/A/NBP/2025"),
         {},
     )
 }
@@ -71,7 +71,7 @@ fun PreviewCurrencyItemRow() {
 fun PreviewCurrencyItemRow2() {
     CurrencyItemRow(
         true,
-        CurrencyItem("rand (Republika Południowej Afryki)", "USD", 4.12),
+        CurrencyItem("rand (Republika Południowej Afryki)", "USD", 4.12, effectiveDate = "2025-02-04", serialNumber = "023/A/NBP/2025"),
         {},
     )
 }
