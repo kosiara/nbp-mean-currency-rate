@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import com.bk.currency.android.common.common.singleTopNavigator
 import com.bk.currency.android.common.navigation.Screen
+import com.bk.currency.data.common.NbpTableName
 
 @Composable
 fun BottomNavigationUI(navController: NavController) {
@@ -33,15 +34,15 @@ fun BottomNavigationUI(navController: NavController) {
 sealed class BottomTab(
     val name: String,
     val navigationPath: String,
-    val argumentTableName: String = "A",
+    val argumentTableName: String = NbpTableName.A.name,
     val navIcon: (@Composable () -> Unit) = {
         Icon(
             Icons.Filled.Home, contentDescription = "home"
         )
     },
 ) {
-    object TableA : BottomTab("Table A", Screen.CurrencyList.route, "A")
-    object TableB : BottomTab("Table B", Screen.CurrencyList.route, "B",
+    object TableA : BottomTab("Table ${NbpTableName.A.name}", Screen.CurrencyList.route, NbpTableName.A.name)
+    object TableB : BottomTab("Table ${NbpTableName.B.name}", Screen.CurrencyList.route, NbpTableName.B.name,
         navIcon = {
             Icon(
                 Icons.Filled.Star, contentDescription = "star"
