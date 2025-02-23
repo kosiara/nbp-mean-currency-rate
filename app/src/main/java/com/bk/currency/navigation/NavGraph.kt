@@ -59,12 +59,13 @@ fun Navigation(
 
 @Composable
 fun navigationTitle(navController: NavController): String {
-    return when (currentRoute(navController)) {
-        Screen.CurrencyList.route -> stringResource(id = R.string.currency_list_screen)
-        Screen.CurrencyDetail.route -> stringResource(id = R.string.currency_details_screen)
-        else -> {
-            stringResource(com.bk.currency.android.common.R.string.app_name)
-        }
+    val currentRoute = currentRoute(navController)
+    return if (currentRoute?.contains(Screen.CurrencyList.route) == true) {
+        stringResource(id = R.string.currency_list_screen)
+    } else if (currentRoute?.contains(Screen.CurrencyDetail.route) == true) {
+        stringResource(id = R.string.currency_details_screen)
+    } else {
+        stringResource(com.bk.currency.android.common.R.string.app_name)
     }
 }
 
