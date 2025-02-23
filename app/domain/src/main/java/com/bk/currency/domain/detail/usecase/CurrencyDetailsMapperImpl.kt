@@ -5,7 +5,6 @@ import com.bk.currency.data.common.DataState
 import com.bk.currency.data.model.CurrencyTable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class CurrencyDetailsMapperImpl @Inject constructor(
@@ -19,7 +18,7 @@ class CurrencyDetailsMapperImpl @Inject constructor(
                         rates = result.data.rates.map { rate ->
                             rate.copy(
                                 isHighlighted = highlightingStrategy.shouldHighlight(
-                                    rate.mid, 0.1
+                                    rate.mid, result.data.rates.first().mid
                                 )
                             )
                         }.sortedByDescending { it.effectiveDate }
