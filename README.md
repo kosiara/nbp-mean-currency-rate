@@ -8,7 +8,10 @@ This study project retrieves currency rates from the **NBP API**:
 The project follows a **modular architecture** to enable **performant builds**, separating common Android components into a **shared module**.
 
 ### 🔹 **Modules Overview**
-- **`common`** – Contains:
+- **`common (kotlin)`** – Contains:
+  - highlighting strategy
+
+- **`common (android)`** – Contains:
     - Extensions
     - Design system
     - UI components
