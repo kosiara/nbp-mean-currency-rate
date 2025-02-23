@@ -3,15 +3,18 @@ package com.bk.currency.welcome
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -24,6 +27,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bk.currency.R
 import com.bk.currency.navigation.Navigation
+import com.bk.currency.navigation.Screen
+import com.bk.currency.navigation.currentRoute
 import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.ui.component.CircularIndeterminateProgressBar
 import com.bk.currency.welcome.viewmodel.MainViewModel
@@ -48,54 +53,20 @@ fun MainScreen() {
                     color = Color.White
                 )
             },
-//                navigationIcon = {
-//                when (currentRoute(navController)) {
-//                    Screen.MovieDetail.route, Screen.ArtistDetail.route, Screen.TvSeriesDetail.route, Screen.FavoriteMovie.route, Screen.FavoriteTvSeries.route -> {
-//                        val activeScreen = currentRoute(navController)
-//                        IconButton(onClick = {
-//                            if (isFavoriteActive.value && (activeScreen == Screen.FavoriteMovie.route || activeScreen == Screen.FavoriteTvSeries.route)) {
-//                                val activeMovieTab =
-//                                    if (pagerState.currentPage == ACTIVE_MOVIE_TAB) Screen.NowPlaying.route else Screen.AiringTodayTvSeries.route
-//                                navController.navigate(activeMovieTab) {
-//                                    popUpTo(navController.graph.startDestinationId) {
-//                                        inclusive = true
-//                                    }
-//                                }
-//                                isFavoriteActive.value = false
-//                            } else {
-//                                navController.popBackStack()
-//                            }
-//                        }) {
-//                            Icon(
-//                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-//                                contentDescription = "back arrow",
-//                                tint = Color.White
-//                            )
-//                        }
-//                    }
-//                }
-//            },
-//                scrollBehavior = scrollBehavior, actions = {
-//                IconButton(onClick = {
-//                    if (!isFavoriteActive.value) navController.navigate(Screen.FavoriteMovie.route)
-//                    isFavoriteActive.value = true
-//                }) {
-//                    if (currentRoute(navController) !in listOf(
-//                            Screen.FavoriteMovie.route,
-//                            Screen.FavoriteTvSeries.route,
-//                            Screen.MovieDetail.route,
-//                            Screen.TvSeriesDetail.route,
-//                            Screen.ArtistDetail.route
-//                        )
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Filled.Favorite,
-//                            contentDescription = "favorite",
-//                            tint = Color.Gray
-//                        )
-//                    }
-//                }
-//            }
+                navigationIcon = {
+                val activeScreen = currentRoute(navController)
+                if (activeScreen?.contains(Screen.CurrencyDetail.route) == true) {
+                    IconButton(
+                        onClick = { navController.popBackStack() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "back arrow",
+                            tint = Color.Black
+                        )
+                    }
+                }
+            },
             )
         },
         bottomBar = {

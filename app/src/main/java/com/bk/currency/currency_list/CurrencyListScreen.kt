@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bk.currency.common.navigateWithHistory
 import com.bk.currency.common.singleTopNavigator
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.navigation.Screen
@@ -43,7 +44,7 @@ fun CurrencyListScreen(
             CurrencyItemRow(
                 currencyItem = item,
                 onclick = {
-                    navController.singleTopNavigator(Screen.CurrencyDetail.route
+                    navController.navigateWithHistory(Screen.CurrencyDetail.route
                         .plus("/${uiState.currencyTable?.tableName}")
                         .plus("/${item.code}"))
                 }

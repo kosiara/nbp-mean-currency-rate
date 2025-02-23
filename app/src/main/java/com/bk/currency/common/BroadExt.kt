@@ -13,3 +13,9 @@ fun NavController.singleTopNavigator(route: String) {
         restoreState = true
     }
 }
+
+fun NavController.navigateWithHistory(route: String) {
+    this.navigate(route) {
+        restoreState = true
+    }
+}
