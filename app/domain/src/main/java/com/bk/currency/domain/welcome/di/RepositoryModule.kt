@@ -1,8 +1,6 @@
-package com.bk.currency.data.di
+package com.bk.currency.domain.welcome.di
 
 import com.bk.currency.data.datasource.remote.NbpApiService
-import com.bk.currency.domain.welcome.repository.TableRepository
-import com.bk.currency.domain.welcome.repository.TableRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

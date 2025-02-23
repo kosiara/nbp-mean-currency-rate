@@ -6,7 +6,6 @@ import com.bk.currency.data.common.DataState
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.domain.welcome.usecase.GetCurrencyListUseCase
-import com.piashcse.hilt_mvvm_compose_movie.data.repository.remote.movie.TableRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

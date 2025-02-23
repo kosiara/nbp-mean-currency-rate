@@ -4,7 +4,7 @@ import javax.inject.Inject
 import com.bk.currency.data.common.DataState
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
-import com.piashcse.hilt_mvvm_compose_movie.data.repository.remote.movie.TableRepository
+import com.bk.currency.domain.welcome.repository.TableRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetCurrencyListUseCase @Inject constructor(
