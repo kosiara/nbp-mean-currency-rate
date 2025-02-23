@@ -23,3 +23,4 @@ rootProject.name = "CurrencyRateViewer"
 include(":app")
 include(":common")
 include(":app:data")
+include(":app:domain")

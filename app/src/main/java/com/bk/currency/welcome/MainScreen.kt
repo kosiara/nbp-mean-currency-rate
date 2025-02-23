@@ -50,7 +50,7 @@ fun MainScreen() {
                     text = navigationTitle(navController),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    color = Color.White
+                    color = Color.Black
                 )
             },
                 navigationIcon = {
@@ -76,8 +76,7 @@ fun MainScreen() {
             if (uiState.error != null) {
                 Snackbar(
                     action = {}, modifier = Modifier.padding(8.dp)
-                )
-                {
+                ) {
                     Text(text = stringResource(R.string.no_internet))
                 }
             }

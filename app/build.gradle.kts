@@ -42,6 +42,8 @@ android {
 }
 
 dependencies {
+    api(project(":app:domain"))
+    api(project(":app:data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -58,7 +60,6 @@ dependencies {
     // DI
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(project(":app:data"))
     ksp(libs.hilt.compiler)
     // Network
     implementation(libs.retrofit)
