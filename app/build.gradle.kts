@@ -42,8 +42,7 @@ android {
 }
 
 dependencies {
-    api(project(":app:domain"))
-    api(project(":app:data"))
+    implementation(project(":app:domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
