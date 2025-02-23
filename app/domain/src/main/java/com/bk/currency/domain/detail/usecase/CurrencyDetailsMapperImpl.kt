@@ -22,7 +22,7 @@ class CurrencyDetailsMapperImpl @Inject constructor(
                                     rate.mid, 0.1
                                 )
                             )
-                        }
+                        }.sortedByDescending { it.effectiveDate }
                     )
                 )
             } else {
