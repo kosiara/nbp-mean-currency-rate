@@ -9,9 +9,11 @@ data class CurrencyItem(
     val code: String,
     @SerializedName("mid")
     val mid: Double,
-
     @SerializedName("effectiveDate")
     val effectiveDate: String,
     @SerializedName("no")
     val serialNumber: String,
+
+    // dynamic members
+    val isHighlighted: Boolean = false
 )

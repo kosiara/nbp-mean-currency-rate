@@ -35,6 +35,7 @@ android {
 
 dependencies {
     api(project(":app:data"))
+    api(project(":common"))
 
     // DI
     implementation(libs.hilt.android)
