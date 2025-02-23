@@ -16,4 +16,6 @@ dependencies {
     // DI - HILT - KOTLIN ONLY
     implementation(libs.hilt.core)
     ksp(libs.hilt.compiler)
+
+    testImplementation(libs.junit)
 }
