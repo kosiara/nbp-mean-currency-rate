@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import javax.inject.Inject
 
-class TableRepositoryImpl @Inject constructor(
+class TableListRepositoryImpl @Inject constructor(
     private val apiService: NbpApiService
-) : TableRepository {
+) : TableListRepository {
 
 
      override suspend fun currencyRates(tableName: NbpTableName): Flow<DataState<CurrencyTable>> =

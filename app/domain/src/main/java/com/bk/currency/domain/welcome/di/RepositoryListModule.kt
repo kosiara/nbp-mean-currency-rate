@@ -9,14 +9,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+object RepositoryListModule {
 
     @Singleton
     @Provides
-    fun provideTableRepository(
+    fun provideTableListRepository(
         apiService: NbpApiService,
-    ): com.bk.currency.domain.welcome.repository.TableRepository {
-        return com.bk.currency.domain.welcome.repository.TableRepositoryImpl(
+    ): com.bk.currency.domain.welcome.repository.TableListRepository {
+        return com.bk.currency.domain.welcome.repository.TableListRepositoryImpl(
             apiService
         )
     }

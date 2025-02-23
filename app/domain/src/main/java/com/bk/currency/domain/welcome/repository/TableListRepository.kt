@@ -5,7 +5,7 @@ import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
 import kotlinx.coroutines.flow.Flow
 
-interface TableRepository {
+interface TableListRepository {
     suspend fun currencyRates(tableName: NbpTableName): Flow<DataState<CurrencyTable>>
     suspend fun currencyDetail(tableName: NbpTableName, currencyCode: String): Flow<DataState<CurrencyTable>>
 }
