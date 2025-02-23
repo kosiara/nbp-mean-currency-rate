@@ -39,3 +39,9 @@ The application is built using:
 ## ✅ **Extras**
 - 🧪 **Unit tests** in the `common` (**Kotlin**) module
 - 📸 **Screenshot tests** using Jetpack in the `common` (**Android**) module  
+
+### Image - Currency List
+![Description of Image 1](./readme/Screenshot_1.png)
+
+### Image - Currency Details
+![Description of Image 2](./readme/Screenshot_2.png)
