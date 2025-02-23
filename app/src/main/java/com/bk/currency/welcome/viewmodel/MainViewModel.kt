@@ -23,9 +23,9 @@ class MainViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState: StateFlow<MainUiState> get()  = _uiState.asStateFlow()
 
-    fun loadCurrencies() {
+    fun loadCurrencies(tableName: NbpTableName) {
         viewModelScope.launch {
-            currencyRepo.currencyRates(NbpTableName.A)
+            currencyRepo.currencyRates(tableName)
                 .onStart {
                     _uiState.value = _uiState.value.copy(isLoading = true, error = null)
                 }

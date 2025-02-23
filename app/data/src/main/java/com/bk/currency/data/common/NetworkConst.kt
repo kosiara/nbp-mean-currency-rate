@@ -5,5 +5,16 @@ object NetworkConst {
 }
 
 enum class NbpTableName {
-    A, B
+    A, B;
+
+    companion object {
+        fun fromString(tbpName: String): NbpTableName {
+            return when (tbpName) {
+                "A" -> A
+                "B" -> B
+                else -> A
+            }
+
+        }
+    }
 }

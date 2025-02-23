@@ -12,9 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bk.currency.data.model.CurrencyTable
+import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.ui.component.CurrencyItemRow
 import com.bk.currency.welcome.viewmodel.MainViewModel
+import timber.log.Timber
 
 @Composable
 fun CurrencyListScreen(
@@ -25,7 +26,11 @@ fun CurrencyListScreen(
     val uiState by mainViewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        mainViewModel.loadCurrencies()
+        if (tableName == null) {
+          Timber.e("tableName is null")
+        } else {
+            mainViewModel.loadCurrencies(NbpTableName.fromString(tableName))
+        }
     }
 
     val rates = uiState.currencyTable?.rates
