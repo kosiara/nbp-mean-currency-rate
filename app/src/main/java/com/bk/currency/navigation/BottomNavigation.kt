@@ -1,4 +1,4 @@
-package com.bk.currency.welcome
+package com.bk.currency.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

@@ -1,4 +1,4 @@
-package com.bk.currency.welcome
+package com.bk.currency.main
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +31,7 @@ import com.bk.currency.navigation.currentRoute
 import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.android.common.designsystem.component.CircularIndeterminateProgressBar
 import com.bk.currency.features.currency_list.viewmodel.CurrencyListViewModel
+import com.bk.currency.navigation.BottomNavigationUI
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
