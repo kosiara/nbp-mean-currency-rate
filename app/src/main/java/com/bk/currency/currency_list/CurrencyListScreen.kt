@@ -41,7 +41,6 @@ fun CurrencyListScreen(
     ) {
         items(rates ?: emptyList()) { item ->
             CurrencyItemRow(
-                selected = false,
                 currencyItem = item,
                 onclick = {
                     navController.singleTopNavigator(Screen.CurrencyDetail.route.plus("/${item.code}"))
