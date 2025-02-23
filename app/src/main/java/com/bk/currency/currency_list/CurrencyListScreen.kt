@@ -12,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bk.currency.common.navigateWithHistory
+import com.bk.currency.android.common.common.navigateWithHistory
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.android.common.navigation.Screen
-import com.bk.currency.ui.component.CurrencyItemRow
+import com.bk.currency.android.common.designsystem.component.CurrencyItemRow
 import com.bk.currency.welcome.viewmodel.MainViewModel
 import timber.log.Timber
 

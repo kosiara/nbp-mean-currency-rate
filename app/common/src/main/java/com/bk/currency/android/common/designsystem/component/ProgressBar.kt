@@ -1,4 +1,4 @@
-package com.bk.currency.ui.component
+package com.bk.currency.android.common.designsystem.component
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator

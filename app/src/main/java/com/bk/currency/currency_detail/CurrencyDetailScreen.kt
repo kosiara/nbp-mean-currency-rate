@@ -7,10 +7,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bk.currency.R
 import com.bk.currency.currency_detail.viewmodel.CurrencyDetailViewModel
 import com.bk.currency.data.common.NbpTableName
-import com.bk.currency.ui.component.CurrencyDetailList
+import com.bk.currency.android.common.designsystem.component.CurrencyDetailList
 
 @Composable
 fun CurrencyDetailScreen(
@@ -27,8 +26,8 @@ fun CurrencyDetailScreen(
 
     val rates = uiState.currencyTable?.rates
     CurrencyDetailList(
-        uiState.currencyTable?.currency ?: stringResource(R.string.no_data),
-        uiState.currencyTable?.code ?: stringResource(R.string.no_data),
+        uiState.currencyTable?.currency ?: stringResource(com.bk.currency.android.common.R.string.no_data),
+        uiState.currencyTable?.code ?: stringResource(com.bk.currency.android.common.R.string.no_data),
         rates ?: emptyList(),
     )
 }

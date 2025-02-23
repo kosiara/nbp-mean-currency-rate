@@ -1,4 +1,4 @@
-package com.bk.currency.common
+package com.bk.currency.android.common.common
 
 import androidx.navigation.NavController
 

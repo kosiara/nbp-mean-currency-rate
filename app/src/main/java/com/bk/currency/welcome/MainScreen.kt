@@ -30,7 +30,7 @@ import com.bk.currency.navigation.Navigation
 import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.navigation.currentRoute
 import com.bk.currency.navigation.navigationTitle
-import com.bk.currency.ui.component.CircularIndeterminateProgressBar
+import com.bk.currency.android.common.designsystem.component.CircularIndeterminateProgressBar
 import com.bk.currency.welcome.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,7 +77,7 @@ fun MainScreen() {
                 Snackbar(
                     action = {}, modifier = Modifier.padding(8.dp)
                 ) {
-                    Text(text = stringResource(R.string.no_internet))
+                    Text(text = stringResource(com.bk.currency.android.common.R.string.no_internet))
                 }
             }
         }

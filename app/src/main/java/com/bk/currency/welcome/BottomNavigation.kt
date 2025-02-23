@@ -9,7 +9,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.bk.currency.common.singleTopNavigator
+import com.bk.currency.android.common.common.singleTopNavigator
 import com.bk.currency.android.common.navigation.Screen
 
 @Composable
