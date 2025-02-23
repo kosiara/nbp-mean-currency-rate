@@ -10,9 +10,9 @@ data class CurrencyTable(
     @SerializedName("code")
     val code: String,
     @SerializedName("no")
-    val serialNumber: String,
+    val serialNumber: String?,
     @SerializedName("effectiveDate")
-    val effectiveDate: String,
+    val effectiveDate: String?,
     @SerializedName("rates")
     val rates: List<CurrencyItem>
 )

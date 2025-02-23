@@ -4,15 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class CurrencyItem(
     @SerializedName("currency")
-    val currency: String,
+    val currency: String?,
     @SerializedName("code")
-    val code: String,
+    val code: String?,
     @SerializedName("mid")
     val mid: Double,
     @SerializedName("effectiveDate")
     val effectiveDate: String,
     @SerializedName("no")
-    val serialNumber: String,
+    val serialNumber: String?,
 
     // dynamic members
     val isHighlighted: Boolean = false

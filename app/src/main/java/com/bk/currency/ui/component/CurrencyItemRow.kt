@@ -12,9 +12,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bk.currency.R
 import com.bk.currency.data.model.CurrencyItem
 import java.util.Locale
 
@@ -35,7 +37,7 @@ fun CurrencyItemRow(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = currencyItem.currency,
+                text = currencyItem.currency ?: stringResource(R.string.no_data),
                 modifier = Modifier.weight(1f),
                 color = Color.Black,
                 style = MaterialTheme.typography.bodyLarge,
@@ -43,7 +45,7 @@ fun CurrencyItemRow(
                 overflow = TextOverflow.Ellipsis
             )
             Text(
-                text = currencyItem.code,
+                text = currencyItem.code ?: stringResource(com.bk.currency.R.string.no_data),
                 modifier = Modifier.padding(start = 8.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
