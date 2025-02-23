@@ -25,13 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.bk.currency.R
 import com.bk.currency.navigation.Navigation
 import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.navigation.currentRoute
 import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.android.common.designsystem.component.CircularIndeterminateProgressBar
-import com.bk.currency.welcome.viewmodel.MainViewModel
+import com.bk.currency.features.currency_list.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,4 +1,4 @@
-package com.bk.currency.currency_list
+package com.bk.currency.features.currency_list
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,7 +16,7 @@ import com.bk.currency.android.common.common.navigateWithHistory
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.android.common.designsystem.component.CurrencyItemRow
-import com.bk.currency.welcome.viewmodel.MainViewModel
+import com.bk.currency.features.currency_list.viewmodel.MainViewModel
 import timber.log.Timber
 
 @Composable
