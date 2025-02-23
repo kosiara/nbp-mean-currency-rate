@@ -1,16 +1,38 @@
-This study project gets currency rates from NBP API under: https://api.nbp.pl/
+# Currency Rates Study Project
 
-Module separation focuses on performant builds - separating common Android components into a common Android module. 
+This study project retrieves currency rates from the **NBP API**:  
+➡️ [https://api.nbp.pl/](https://api.nbp.pl/)
 
-We do have: 
-common - with extensions, design-system, components and navigation
-data - with models, data-sources and networking
-domain - with repositories and use-cases
-features - with specific app features/screens
-app - main Android module
+## 📂 Module Structure
 
-Application is built using Jetpack Compose, coroutines
+The project follows a **modular architecture** to enable **performant builds**, separating common Android components into a **shared module**.
 
-Extra: 
-* unit tests in common (kotlin) module
-* screen-shot tests from Jetpack in common (Android) module
+### 🔹 **Modules Overview**
+- **`common`** – Contains:
+    - Extensions
+    - Design system
+    - UI components
+    - Navigation
+
+- **`data`** – Handles:
+    - Data models
+    - Data sources
+    - Networking
+
+- **`domain`** – Manages:
+    - Repositories
+    - Use-cases
+
+- **`features`** – Includes:
+    - Specific app features & screens
+
+- **`app`** – The main **Android module**
+
+## 🚀 **Tech Stack**
+The application is built using:
+- **Jetpack Compose** for UI
+- **Coroutines** for concurrency
+
+## ✅ **Extras**
+- 🧪 **Unit tests** in the `common` (**Kotlin**) module
+- 📸 **Screenshot tests** using Jetpack in the `common` (**Android**) module  
