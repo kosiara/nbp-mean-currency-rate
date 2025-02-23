@@ -22,5 +22,5 @@ sealed class Screen(
     object CurrencyList : Screen("currency_list",
         objectName = "tableName", objectPath = "/{tableName}")
     object CurrencyDetail :
-        Screen("currency_detail", objectName = "movieItem", objectPath = "/{movieItem}")
+        Screen("currency_detail", objectName = "currencyCode", objectPath = "/{currencyCode}")
 }

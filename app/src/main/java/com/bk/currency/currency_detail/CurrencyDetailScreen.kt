@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 @Composable
 fun CurrencyDetailScreen(
     navController: NavController,
+    currencyCode: String
 ) {
 
 }

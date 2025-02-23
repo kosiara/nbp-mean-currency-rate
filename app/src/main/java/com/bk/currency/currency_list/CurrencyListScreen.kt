@@ -44,7 +44,6 @@ fun CurrencyListScreen(
                 selected = false,
                 currencyItem = item,
                 onclick = {
-                    item.code
                     navController.singleTopNavigator(Screen.CurrencyDetail.route.plus("/${item.code}"))
                 }
             )
