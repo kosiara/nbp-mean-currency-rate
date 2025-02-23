@@ -1,27 +1,16 @@
 package com.bk.currency.currency_detail
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bk.currency.R
 import com.bk.currency.currency_detail.viewmodel.CurrencyDetailViewModel
 import com.bk.currency.data.common.NbpTableName
-import com.bk.currency.data.mock.DataMock
-import com.bk.currency.data.model.CurrencyItem
 import com.bk.currency.ui.component.CurrencyDetailList
-import com.bk.currency.ui.component.HighlightingItemRow
 
 @Composable
 fun CurrencyDetailScreen(
@@ -37,8 +26,8 @@ fun CurrencyDetailScreen(
 
     val rates = uiState.currencyTable?.rates
     CurrencyDetailList(
-        "Dolar amerykański",
-        "USD",
+        uiState.currencyTable?.currency ?: stringResource(R.string.no_data),
+        uiState.currencyTable?.code ?: stringResource(R.string.no_data),
         rates ?: emptyList(),
     )
 }
