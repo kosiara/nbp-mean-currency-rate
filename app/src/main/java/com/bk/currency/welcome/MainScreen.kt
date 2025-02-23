@@ -30,14 +30,14 @@ import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.navigation.currentRoute
 import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.android.common.designsystem.component.CircularIndeterminateProgressBar
-import com.bk.currency.features.currency_list.viewmodel.MainViewModel
+import com.bk.currency.features.currency_list.viewmodel.CurrencyListViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    val mainViewModel = hiltViewModel<MainViewModel>()
+    val currencyListViewModel = hiltViewModel<CurrencyListViewModel>()
     val navController = rememberNavController()
-    val uiState by mainViewModel.uiState.collectAsState()
+    val uiState by currencyListViewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {

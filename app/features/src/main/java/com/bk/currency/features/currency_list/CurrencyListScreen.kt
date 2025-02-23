@@ -16,7 +16,7 @@ import com.bk.currency.android.common.common.navigateWithHistory
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.android.common.designsystem.component.CurrencyItemRow
-import com.bk.currency.features.currency_list.viewmodel.MainViewModel
+import com.bk.currency.features.currency_list.viewmodel.CurrencyListViewModel
 import timber.log.Timber
 
 @Composable
@@ -24,14 +24,14 @@ fun CurrencyListScreen(
     navController: NavController,
     tableName: String?
 ) {
-    val mainViewModel = hiltViewModel<MainViewModel>()
-    val uiState by mainViewModel.uiState.collectAsState()
+    val currencyListViewModel = hiltViewModel<CurrencyListViewModel>()
+    val uiState by currencyListViewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         if (tableName == null) {
           Timber.e("tableName is null")
         } else {
-            mainViewModel.loadCurrencies(NbpTableName.fromString(tableName))
+            currencyListViewModel.loadCurrencies(NbpTableName.fromString(tableName))
         }
     }
 
