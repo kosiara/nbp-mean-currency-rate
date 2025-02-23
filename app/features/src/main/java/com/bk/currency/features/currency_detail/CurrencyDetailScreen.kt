@@ -1,4 +1,4 @@
-package com.bk.currency.currency_detail
+package com.bk.currency.features.currency_detail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.bk.currency.currency_detail.viewmodel.CurrencyDetailViewModel
+import com.bk.currency.features.currency_detail.viewmodel.CurrencyDetailViewModel
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.android.common.designsystem.component.CurrencyDetailList
 

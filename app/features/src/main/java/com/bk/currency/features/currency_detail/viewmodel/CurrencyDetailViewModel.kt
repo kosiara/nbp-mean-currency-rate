@@ -1,4 +1,4 @@
-package com.bk.currency.currency_detail.viewmodel
+package com.bk.currency.features.currency_detail.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

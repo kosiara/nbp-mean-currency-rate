@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bk.currency.android.common"
+    namespace = "com.bk.currency.features"
     compileSdk = 35
 
     defaultConfig {
@@ -39,7 +39,8 @@ android {
 }
 
 dependencies {
-    api(project(":app:data"))
+    implementation(project(":app:common"))
+    implementation(project(":app:domain"))
 
     implementation(libs.androidx.constraintlayout.compose)
     implementation(platform(libs.androidx.compose.bom))

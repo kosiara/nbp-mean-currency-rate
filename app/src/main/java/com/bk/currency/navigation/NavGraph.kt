@@ -12,7 +12,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.bk.currency.R
 import com.bk.currency.android.common.navigation.Screen
-import com.bk.currency.currency_detail.CurrencyDetailScreen
+import com.bk.currency.features.currency_detail.CurrencyDetailScreen
 import com.bk.currency.currency_list.CurrencyListScreen
 
 @Composable
@@ -49,7 +49,7 @@ fun Navigation(
             val currencyCode = it.arguments?.getString(Screen.CurrencyDetail.secondaryObjectName)
             tableName?.let {
                 currencyCode?.let {
-                    CurrencyDetailScreen(
+                    com.bk.currency.features.currency_detail.CurrencyDetailScreen(
                         navController = navController, tableName, currencyCode
                     )
                 }
