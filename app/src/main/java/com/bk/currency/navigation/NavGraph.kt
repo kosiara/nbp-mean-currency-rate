@@ -39,14 +39,19 @@ fun Navigation(
             Screen.CurrencyDetail.route.plus(Screen.CurrencyDetail.objectPath),
             arguments = listOf(navArgument(Screen.CurrencyDetail.objectName) {
                 type = NavType.StringType
+            }, navArgument(Screen.CurrencyDetail.secondaryObjectName) {
+                type = NavType.StringType
             })
         ) {
             label = stringResource(R.string.currency_details_screen)
-            val currencyCode = it.arguments?.getString(Screen.CurrencyDetail.objectName)
-            currencyCode?.let {
-                CurrencyDetailScreen(
-                    navController = navController, currencyCode
-                )
+            val tableName = it.arguments?.getString(Screen.CurrencyDetail.objectName)
+            val currencyCode = it.arguments?.getString(Screen.CurrencyDetail.secondaryObjectName)
+            tableName?.let {
+                currencyCode?.let {
+                    CurrencyDetailScreen(
+                        navController = navController, tableName, currencyCode
+                    )
+                }
             }
         }
 

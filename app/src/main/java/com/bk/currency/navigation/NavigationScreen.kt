@@ -15,12 +15,15 @@ sealed class Screen(
             Icons.Filled.Home, contentDescription = "home"
         )
     },
+    val objectPath: String = "",
     val objectName: String = "",
-    val objectPath: String = ""
+    val secondaryObjectName: String = "",
 ) {
     object StartScreen : Screen("currency_list/A")
     object CurrencyList : Screen("currency_list",
         objectName = "tableName", objectPath = "/{tableName}")
     object CurrencyDetail :
-        Screen("currency_detail", objectName = "currencyCode", objectPath = "/{currencyCode}")
+        Screen("currency_detail", objectPath = "/{tableName}/{currencyCode}",
+            objectName = "tableName", secondaryObjectName = "currencyCode",
+        )
 }

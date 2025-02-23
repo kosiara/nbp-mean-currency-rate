@@ -43,7 +43,9 @@ fun CurrencyListScreen(
             CurrencyItemRow(
                 currencyItem = item,
                 onclick = {
-                    navController.singleTopNavigator(Screen.CurrencyDetail.route.plus("/${item.code}"))
+                    navController.singleTopNavigator(Screen.CurrencyDetail.route
+                        .plus("/${uiState.currencyTable?.tableName}")
+                        .plus("/${item.code}"))
                 }
             )
         }

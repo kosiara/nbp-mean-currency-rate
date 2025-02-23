@@ -15,13 +15,14 @@ import com.bk.currency.ui.component.CurrencyDetailList
 @Composable
 fun CurrencyDetailScreen(
     navController: NavController,
-    currencyCode: String
+    tableName: String,
+    currencyCode: String,
 ) {
     val detailViewModel = hiltViewModel<CurrencyDetailViewModel>()
     val uiState by detailViewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        detailViewModel.loadCurrencyDetails(NbpTableName.A /* NbpTableName.fromString(tableName)*/, currencyCode)
+        detailViewModel.loadCurrencyDetails(NbpTableName.fromString(tableName), currencyCode)
     }
 
     val rates = uiState.currencyTable?.rates
