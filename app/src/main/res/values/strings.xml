@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">CurrencyRateViewer</string>
-
     <string name="no_internet">No internet connection</string>
     <string name="no_data">No data</string>
     <string name="main_screen">Currency table</string>

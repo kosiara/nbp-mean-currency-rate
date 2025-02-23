@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.bk.currency.R
+import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.currency_detail.CurrencyDetailScreen
 import com.bk.currency.currency_list.CurrencyListScreen
 
@@ -63,7 +64,7 @@ fun navigationTitle(navController: NavController): String {
         Screen.CurrencyList.route -> stringResource(id = R.string.currency_list_screen)
         Screen.CurrencyDetail.route -> stringResource(id = R.string.currency_details_screen)
         else -> {
-            stringResource(R.string.app_name)
+            stringResource(com.bk.currency.android.common.R.string.app_name)
         }
     }
 }

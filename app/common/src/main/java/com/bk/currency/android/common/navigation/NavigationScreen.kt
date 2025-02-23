@@ -1,11 +1,11 @@
-package com.bk.currency.navigation
+package com.bk.currency.android.common.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import com.bk.currency.R
+import com.bk.currency.android.common.R
 
 sealed class Screen(
     val route: String,

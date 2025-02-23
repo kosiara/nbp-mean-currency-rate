@@ -27,7 +27,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bk.currency.R
 import com.bk.currency.navigation.Navigation
-import com.bk.currency.navigation.Screen
+import com.bk.currency.android.common.navigation.Screen
 import com.bk.currency.navigation.currentRoute
 import com.bk.currency.navigation.navigationTitle
 import com.bk.currency.ui.component.CircularIndeterminateProgressBar
