@@ -7,6 +7,7 @@ import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.domain.detail.usecase.GetCurrencyDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +25,7 @@ class CurrencyDetailViewModel @Inject constructor(
     val uiState: StateFlow<DetailUiState> get()  = _uiState.asStateFlow()
 
     fun loadCurrencyDetails(tableName: NbpTableName, currencyCode: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             getCurrencyDetailUseCase.invoke(tableName, currencyCode)
                 .onStart {
                     _uiState.value = _uiState.value.copy(isLoading = true, error = null)

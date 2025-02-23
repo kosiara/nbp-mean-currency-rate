@@ -1,5 +1,6 @@
 package com.bk.currency.features.currency_list.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bk.currency.data.common.DataState
@@ -7,6 +8,7 @@ import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.domain.welcome.usecase.GetCurrencyListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +26,9 @@ class CurrencyListViewModel @Inject constructor(
     val uiState: StateFlow<MainUiState> get()  = _uiState.asStateFlow()
 
     fun loadCurrencies(tableName: NbpTableName) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d("ThreadInfo", "viewModelScope Current thread: ${Thread.currentThread().name}")
+
             getCurrencyListUseCase.invoke(tableName)
                 .onStart {
                     _uiState.value = _uiState.value.copy(isLoading = true, error = null)
