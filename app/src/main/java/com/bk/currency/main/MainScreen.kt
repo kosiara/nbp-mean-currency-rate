@@ -86,7 +86,6 @@ fun MainScreen() {
             MainView(
                 navController = navController,
             )
-            CircularIndeterminateProgressBar(isDisplayed = uiState.isLoading, 0.1f)
         }
     }
 }

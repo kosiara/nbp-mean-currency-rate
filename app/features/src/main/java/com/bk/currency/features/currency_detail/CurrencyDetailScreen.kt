@@ -1,5 +1,6 @@
 package com.bk.currency.features.currency_detail
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -7,6 +8,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bk.currency.android.common.R
+import com.bk.currency.android.common.designsystem.component.CircularIndeterminateProgressBar
 import com.bk.currency.features.currency_detail.viewmodel.CurrencyDetailViewModel
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.android.common.designsystem.component.CurrencyDetailList
@@ -25,9 +28,12 @@ fun CurrencyDetailScreen(
     }
 
     val rates = uiState.currencyTable?.rates
-    CurrencyDetailList(
-        uiState.currencyTable?.currency ?: stringResource(com.bk.currency.android.common.R.string.no_data),
-        uiState.currencyTable?.code ?: stringResource(com.bk.currency.android.common.R.string.no_data),
-        rates ?: emptyList(),
-    )
+    Box {
+        CurrencyDetailList(
+            uiState.currencyTable?.currency ?: stringResource(R.string.no_data),
+            uiState.currencyTable?.code ?: stringResource(R.string.no_data),
+            rates ?: emptyList(),
+        )
+        CircularIndeterminateProgressBar(isDisplayed = uiState.isLoading, 0.1f)
+    }
 }
