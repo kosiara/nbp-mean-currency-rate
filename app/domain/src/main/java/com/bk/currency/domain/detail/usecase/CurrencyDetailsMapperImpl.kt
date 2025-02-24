@@ -33,7 +33,11 @@ class CurrencyDetailsMapperImpl @Inject constructor(
         }
     }
 
-    override suspend fun mapPaging(items: Flow<PagingData<CurrencyItem>>): Flow<DataState<CurrencyTable>> {
-        return emptyFlow()
+    override suspend fun map(item: CurrencyItem, meanRate: Double): CurrencyItem {
+        return item.copy(
+            isHighlighted = highlightingStrategy.shouldHighlight(
+                item.mid, meanRate
+            )
+        )
     }
 }

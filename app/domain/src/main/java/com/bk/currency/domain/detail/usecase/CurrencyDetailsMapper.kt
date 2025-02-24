@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface CurrencyDetailsMapper {
     suspend fun map(items: Flow<DataState<CurrencyTable>>): Flow<DataState<CurrencyTable>>
-    suspend fun mapPaging(items: Flow<PagingData<CurrencyItem>>): Flow<DataState<CurrencyTable>>
+    suspend fun map(item: CurrencyItem, meanRate: Double): CurrencyItem
 }
