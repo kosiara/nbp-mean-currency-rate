@@ -23,5 +23,4 @@ class TableDetailsRepositoryImpl @Inject constructor(
             emit(DataState.Error(e))
         }
     }
-
 }

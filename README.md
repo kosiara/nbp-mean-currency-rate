@@ -37,7 +37,7 @@ The application is built using:
 - **Coroutines** for concurrency
 
 ## ✅ **Extras**
-- 🧪 **Unit tests** in the `common` (**Kotlin**) module, domain use-cases, feature view-models
+- 🧪 **Unit tests** in the `common` (**Kotlin**) module, domain use-cases and repositories, feature view-models
 - 📸 **Screenshot tests** using Jetpack in the `common` (**Android**) module  
 
 ### Image - Currency List
