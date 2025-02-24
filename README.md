@@ -40,6 +40,9 @@ The application is built using:
 - 🧪 **Unit tests** in the `common` (**Kotlin**) module, domain use-cases and repositories, feature view-models
 - 📸 **Screenshot tests** using Jetpack in the `common` (**Android**) module  
 
+## 👷‍♂️🛠️**Paging**
+- Partial downloads using Jetpack Paging Library 3 could be checked out here - ![PAGING API BRANCH](https://github.com/kosiara/nbp-mean-currency-rate/compare/feature/paging-api?expand=1)
+
 ### Image - Currency List
 ![Description of Image 1](./readme/Screenshot_1.png)
 
