@@ -45,6 +45,10 @@ dependencies {
     // Logging
     implementation(libs.timber)
 
+    // Paging
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

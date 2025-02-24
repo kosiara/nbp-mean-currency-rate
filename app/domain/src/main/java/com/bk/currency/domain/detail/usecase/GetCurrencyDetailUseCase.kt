@@ -14,6 +14,8 @@ class GetCurrencyDetailUseCase @Inject constructor(
     suspend operator fun invoke(tableName: NbpTableName, currencyCode: String): Flow<DataState<CurrencyTable>> {
         return currencyDetailsMapper.map(
             currencyRepo.currencyDetail(tableName, currencyCode)
+
+            //currencyRepo.getCurrencyDetailsPaging(tableName, currencyCode)
         )
     }
 }
