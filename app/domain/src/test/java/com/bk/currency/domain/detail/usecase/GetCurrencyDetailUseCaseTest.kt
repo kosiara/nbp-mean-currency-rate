@@ -1,9 +1,9 @@
-package com.bk.currency.domain.usecase
+package com.bk.currency.domain.detail.usecase
 
 import com.bk.currency.data.common.DataState
 import com.bk.currency.data.common.NbpTableName
 import com.bk.currency.data.model.CurrencyTable
-import com.bk.currency.android.common.MainDispatcherRule
+import com.bk.currency.domain.MainDispatcherRule
 import com.bk.currency.domain.detail.repository.TableDetailsRepository
 import com.bk.currency.domain.detail.usecase.CurrencyDetailsMapper
 import com.bk.currency.domain.detail.usecase.GetCurrencyDetailUseCase

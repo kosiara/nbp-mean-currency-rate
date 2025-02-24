@@ -30,22 +30,8 @@ class TableListRepositoryImpl @Inject constructor(
             }
         }
 
-    override suspend fun currencyDetail(tableName: NbpTableName, currencyCode: String): Flow<DataState<CurrencyTable>> = flow {
-        emit(DataState.Loading)
-        try {
-            val query = apiService.getCurrencyDetails(tableName.name, currencyCode, 14)
-            emit(DataState.Success(query))
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
-
-
-
-//    override fun nowPlayingMoviePagingDataSource(genreId: String?): Flow<PagingData<MovieItem>> = Pager(
-//        pagingSourceFactory = { NowPlayingMoviePagingDataSource(apiService, genreId) },
+//    override fun currencyRates(tableName: NbpTableName?): Flow<PagingData<CurrencyTable>> = Pager(
+//        pagingSourceFactory = { TablePagingDataSource(apiService, tableName) },
 //        config = PagingConfig(pageSize = 20)
 //    ).flow
-
-
 }
