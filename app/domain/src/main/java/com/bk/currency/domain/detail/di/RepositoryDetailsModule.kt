@@ -20,9 +20,11 @@ object RepositoryDetailsModule {
     @Provides
     fun provideTableDetailsRepository(
         apiService: NbpApiService,
+        currencyDetailsMapper: CurrencyDetailsMapper,
     ): TableDetailsRepository {
         return TableDetailsRepositoryImpl(
-            apiService
+            apiService,
+            currencyDetailsMapper,
         )
     }
 

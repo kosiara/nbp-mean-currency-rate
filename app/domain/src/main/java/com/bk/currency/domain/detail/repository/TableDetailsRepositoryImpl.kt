@@ -12,9 +12,18 @@ import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.domain.detail.source.CurrencyPagingSource
 import com.bk.currency.domain.detail.usecase.CurrencyDetailsMapper
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.math.sin
 
 class TableDetailsRepositoryImpl @Inject constructor(
     private val apiService: NbpApiService,
@@ -32,10 +41,15 @@ class TableDetailsRepositoryImpl @Inject constructor(
             emit(DataState.Success(table))
             val pagingFlow = getCurrencyDetailsPaging(tableName, currencyCode)
             pagingFlow.collect { pagingData ->
-                val pagingDataOfCurrencyItem = pagingData.map { singleItem -> currencyDetailsMapper.map(singleItem, table.rates.first().mid) }
+
+                // WARNING : THIS SHOULD NOT BE DONE; Feature request:
+                // https://issuetracker.google.com/issues/171812435?pli=1
+                val items = pagingData.map { singleItem ->
+                    currencyDetailsMapper.map(singleItem, table.rates.first().mid) }.toList()
+
                 emit(DataState.Success(
                     table.copy(
-                        rates = table.rates.plus(pagingDataOfCurrencyItem.toList())
+                        rates = table.rates.plus(items)
                     )
                 ))
             }
@@ -57,3 +71,34 @@ class TableDetailsRepositoryImpl @Inject constructor(
         ).flow
     }
 }
+
+/**
+ * Extracts the list of data from a PagingData object.
+ * Useful for testing transformations on PagingData.
+ *
+ * flowOf(PagingData.from(listOf(model)).toList() == listOf(model)
+ *
+ * When nothing else is left, Java reflection will always be there to help us out.
+ */
+@Suppress("UNCHECKED_CAST")
+private suspend fun <T : Any> PagingData<T>.toList(): List<T> {
+    val flow = PagingData::class.java.getDeclaredField("flow").apply {
+        isAccessible = true
+    }.get(this) as Flow<Any?>
+    //val pageEventInsert = flow.single()
+    val pageEventInsert = (flow as Flow<T>).take(2).drop(1).first()
+
+    val pageEventInsertClass = Class.forName("androidx.paging.PageEvent\$Insert")
+    val pagesField = pageEventInsertClass.getDeclaredField("pages").apply {
+        isAccessible = true
+    }
+    val pages = pagesField.get(pageEventInsert) as List<Any?>
+    val transformablePageDataField =
+        Class.forName("androidx.paging.TransformablePage").getDeclaredField("data").apply {
+            isAccessible = true
+        }
+    val listItems =
+        pages.flatMap { transformablePageDataField.get(it) as List<*> }
+    return listItems as List<T>
+}
+// https://gist.github.com/orgmir/05b4b0265ca63fed46f2c6496c9ad913
