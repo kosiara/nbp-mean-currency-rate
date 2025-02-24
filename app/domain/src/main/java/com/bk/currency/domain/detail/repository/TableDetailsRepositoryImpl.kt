@@ -3,6 +3,7 @@ package com.bk.currency.domain.detail.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import androidx.paging.map
 import com.bk.currency.data.common.DataState
 import com.bk.currency.data.common.NbpTableName
@@ -30,22 +31,31 @@ class TableDetailsRepositoryImpl @Inject constructor(
         emit(DataState.Loading)
         try {
             // API has no paging support
-            // Load some data to have at least something visible
+            // Get Currency meta information
             val table = apiService.getCurrencyDetails(tableName.name, currencyCode, pageSize)
-            emit(DataState.Success(table))
-            val pagingFlow = getCurrencyDetailsPaging(tableName, currencyCode)
-            pagingFlow.collect { pagingData ->
+            emit(DataState.Success(table.copy(rates = emptyList())))
 
-                // WARNING : THIS SHOULD NOT BE DONE; Feature request:
-                // https://issuetracker.google.com/issues/171812435?pli=1
-                val items = pagingData.map { singleItem ->
-                    currencyDetailsMapper.map(singleItem, table.rates.first().mid) }.toList()
-
+            val dynamicResultList = mutableListOf<CurrencyItem>()
+            val pagingSource = CurrencyPagingSource(apiService, tableName.name, currencyCode)
+            var loadResult = pagingSource.load(
+                PagingSource.LoadParams.Append(key = 1, loadSize = pageSize, placeholdersEnabled = false)
+            )
+            while (loadResult is PagingSource.LoadResult.Page){
+                dynamicResultList.addAll(loadResult.data.map { currencyDetailsMapper.map(it, table.rates.first().mid) })
                 emit(DataState.Success(
                     table.copy(
-                        rates = table.rates.plus(items)
+                        rates = dynamicResultList
                     )
                 ))
+                val next = loadResult.nextKey
+
+                loadResult = if (next == null) {
+                    PagingSource.LoadResult.Invalid()
+                } else {
+                    pagingSource.load(
+                        PagingSource.LoadParams.Append(key = next, loadSize = pageSize, placeholdersEnabled = false)
+                    )
+                }
             }
         } catch (e: Exception) {
             Timber.e(e, "Exception when downloading: exchangerates/rates/{tableName}/{currencyCode}/last/{responseCount}")
@@ -53,46 +63,15 @@ class TableDetailsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getCurrencyDetailsPaging(tableName: NbpTableName, currencyCode: String): Flow<PagingData<CurrencyItem>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = pageSize,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = {
-                CurrencyPagingSource(apiService, pageSize, tableName.name, currencyCode)
-            }
-        ).flow
-    }
+//    override suspend fun getCurrencyDetailsPaging(tableName: NbpTableName, currencyCode: String): Flow<PagingData<CurrencyItem>> {
+//        return Pager(
+//            config = PagingConfig(
+//                pageSize = pageSize,
+//                enablePlaceholders = false
+//            ),
+//            pagingSourceFactory = {
+//                CurrencyPagingSource(apiService, tableName.name, currencyCode)
+//            }
+//        ).flow
+//    }
 }
-
-/**
- * Extracts the list of data from a PagingData object.
- * Useful for testing transformations on PagingData.
- *
- * flowOf(PagingData.from(listOf(model)).toList() == listOf(model)
- *
- * When nothing else is left, Java reflection will always be there to help us out.
- */
-@Suppress("UNCHECKED_CAST")
-private suspend fun <T : Any> PagingData<T>.toList(): List<T> {
-    val flow = PagingData::class.java.getDeclaredField("flow").apply {
-        isAccessible = true
-    }.get(this) as Flow<Any?>
-    //val pageEventInsert = flow.single()
-    val pageEventInsert = (flow as Flow<T>).take(2).drop(1).first()
-
-    val pageEventInsertClass = Class.forName("androidx.paging.PageEvent\$Insert")
-    val pagesField = pageEventInsertClass.getDeclaredField("pages").apply {
-        isAccessible = true
-    }
-    val pages = pagesField.get(pageEventInsert) as List<Any?>
-    val transformablePageDataField =
-        Class.forName("androidx.paging.TransformablePage").getDeclaredField("data").apply {
-            isAccessible = true
-        }
-    val listItems =
-        pages.flatMap { transformablePageDataField.get(it) as List<*> }
-    return listItems as List<T>
-}
-// https://gist.github.com/orgmir/05b4b0265ca63fed46f2c6496c9ad913
