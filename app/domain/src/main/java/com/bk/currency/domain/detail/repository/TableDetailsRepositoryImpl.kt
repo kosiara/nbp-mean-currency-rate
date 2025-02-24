@@ -12,18 +12,12 @@ import com.bk.currency.data.model.CurrencyTable
 import com.bk.currency.domain.detail.source.CurrencyPagingSource
 import com.bk.currency.domain.detail.usecase.CurrencyDetailsMapper
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.toList
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.math.sin
 
 class TableDetailsRepositoryImpl @Inject constructor(
     private val apiService: NbpApiService,
@@ -66,7 +60,7 @@ class TableDetailsRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                CurrencyPagingSource(apiService, tableName.name, currencyCode)
+                CurrencyPagingSource(apiService, pageSize, tableName.name, currencyCode)
             }
         ).flow
     }
