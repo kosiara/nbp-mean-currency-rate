@@ -27,8 +27,6 @@ class CurrencyListViewModel @Inject constructor(
 
     fun loadCurrencies(tableName: NbpTableName) {
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("ThreadInfo", "viewModelScope Current thread: ${Thread.currentThread().name}")
-
             getCurrencyListUseCase.invoke(tableName)
                 .onStart {
                     _uiState.value = _uiState.value.copy(isLoading = true, error = null)
